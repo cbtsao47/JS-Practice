@@ -51,6 +51,7 @@ var jenny = Object.create(peersonProto, {
 // function constructor makes the newly created object inherit the properties from the prototype
 // Object.create specifies the prototype before the object is created
 
+//function being used as callbacks
 var years = [1990, 1965, 1937, 2005, 1998];
 
 function arrayCalc(arr, fn) {
@@ -76,3 +77,38 @@ function maxHeartRate(currentAge) {
 var ages = arrayCalc(years, calculateAge);
 var fullAges = arrayCalc(ages, isFullAge);
 var heartRate = arrayCalc(ages, maxHeartRate);
+
+// functions returning functions
+
+function interviewQ(job) {
+  if (job === "designer") {
+    return function(name) {
+      console.log(`${name}, can you please explain what UX design is ?`);
+    };
+  } else if (job === "teacher") {
+    return function(name) {
+      console.log(`${name}, what subject do you teach ?`);
+    };
+  } else
+    return function(name) {
+      console.log(`hello ${name}, what do you do ?`);
+    };
+}
+
+var teacherQ = interviewQ("teacher");
+
+var generalQ = interviewQ();
+generalQ("ben");
+
+interviewQ("designer")("Dude");
+
+// IIFE
+
+function game() {
+  var score = Math.random() * 10;
+  console.log(score >= 5);
+}
+(function(rng) {
+  var score = Math.random() * 10;
+  console.log(score >= 5 - rng);
+})(3);
