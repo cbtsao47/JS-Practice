@@ -112,3 +112,32 @@ function game() {
   var score = Math.random() * 10;
   console.log(score >= 5 - rng);
 })(3);
+
+//closures
+
+function retirement(retirementAge) {
+  var job = "your job";
+  return function(yearOfBirth) {
+    var age = 2018 - yearOfBirth;
+    console.log(`${retirementAge - age} years until you can retire ${job}`);
+  };
+}
+
+var retirementUS = retirement(66);
+retirementUS(1990);
+
+retirement(66)(1990);
+
+var retirementTW = retirement(65);
+retirementTW(1986);
+
+function realInterviewQ(job) {
+  return function(name) {
+    if (job === "teacher") {
+      console.log(`${name} what do you teach ?`);
+    } else if (job === "designer") {
+      console.log(`${name}, explain UX design please`);
+    } else console.log(`${name} please tell me about yourself`);
+  };
+}
+realInterviewQ("none")("ben");
