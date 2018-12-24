@@ -66,8 +66,8 @@ function calculateAge(birthYear) {
   return 2018 - birthYear;
 }
 
-function isFullAge(age) {
-  return age >= 18;
+function isFullAge(limit, age) {
+  return age >= limit;
 }
 function maxHeartRate(currentAge) {
   if (currentAge >= 18 && currentAge <= 81) {
@@ -75,6 +75,7 @@ function maxHeartRate(currentAge) {
   } else return -1;
 }
 var ages = arrayCalc(years, calculateAge);
+
 var fullAges = arrayCalc(ages, isFullAge);
 var heartRate = arrayCalc(ages, maxHeartRate);
 
@@ -172,3 +173,9 @@ benFriendly("morning");
 
 var emilyFormal = ben.presentation.bind(emily, "friendly");
 emilyFormal("afternoon");
+//practice bind
+var ages = arrayCalc(years, calculateAge);
+var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+console.log(ages);
+console.log(fullJapan);
+console.log(emilyFormal);
