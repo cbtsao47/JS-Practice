@@ -141,3 +141,34 @@ function realInterviewQ(job) {
   };
 }
 realInterviewQ("none")("ben");
+
+//bind call and apply
+
+var ben = {
+  name: "ben",
+  age: 32,
+  job: "developer",
+  presentation: function(style, timeOfDay) {
+    if (style === "formal") {
+      console.log(`good ${timeOfDay} everyone! ${this.name} is my name`);
+    } else if (style === "friendly") {
+      console.log(`hey guys! what's up! good ${timeOfDay}`);
+    }
+  }
+};
+ben.presentation("formal", "morning");
+var emily = {
+  name: "emily",
+  age: 35,
+  job: "designer"
+};
+
+//method sharing, use method from another object, first argument is where 'this' points to
+ben.presentation.call(emily, "formal", "afternoon");
+
+//currying, create a function based on another function with some presets
+var benFriendly = ben.presentation.bind(ben, "friendly");
+benFriendly("morning");
+
+var emilyFormal = ben.presentation.bind(emily, "friendly");
+emilyFormal("afternoon");
